@@ -24,21 +24,21 @@ public class bankGrpcService extends BankServiceGrpc.BankServiceImplBase {
 
     }
 
-    @Override
-    public void getCurrencyStream(Bank.ConvertCurrencyRequest request, StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
-        String currencyFrom = request.getCurrencyFrom();
-        String currencyTo = request.getCurrencyTo();
-        double amount = request.getAmount();
+//    @Override
+//    public void getCurrencyStream(Bank.ConvertCurrencyRequest request, StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
+//        String currencyFrom = request.getCurrencyFrom();
+//        String currencyTo = request.getCurrencyTo();
+//        double amount = request.getAmount();
+//
+//    }
+//
+//    @Override
+//    public StreamObserver<Bank.ConvertCurrencyRequest> performStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
+//
+//    }
 
-    }
-
-    @Override
-    public StreamObserver<Bank.ConvertCurrencyRequest> performStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
-
-    }
-
-    @Override
-    public StreamObserver<Bank.ConvertCurrencyRequest> fullCurrencyStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
-
-    }
+//    @Override
+//    public StreamObserver<Bank.ConvertCurrencyRequest> fullCurrencyStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
+//
+//    }
 }
