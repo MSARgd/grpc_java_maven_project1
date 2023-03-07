@@ -1,5 +1,5 @@
 syntax = "proto3";
-
+option java_package ="ma.enset.subs";
 service  BankService{
     rpc convert(ConvertCurrencyRequest) returns(ConvertCurrencyResponse);// Unary Model
     rpc getCurrencyStream(ConvertCurrencyRequest) returns(stream ConvertCurrencyResponse);// Server Streaming Model
