@@ -1,12 +1,9 @@
 package ma.enset.services;
-
 import io.grpc.stub.StreamObserver;
 import ma.enset.subs.Bank;
 import ma.enset.subs.BankServiceGrpc;
-
 import java.util.Timer;
 import java.util.TimerTask;
-
 public class bankGrpcService extends BankServiceGrpc.BankServiceImplBase {
     @Override
     public void convert(Bank.ConvertCurrencyRequest request, StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
@@ -21,11 +18,7 @@ public class bankGrpcService extends BankServiceGrpc.BankServiceImplBase {
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
-
-
-
     }
-
     @Override
     public void getCurrencyStream(Bank.ConvertCurrencyRequest request, StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
         String currencyFrom = request.getCurrencyFrom();
