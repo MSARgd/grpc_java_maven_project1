@@ -42,40 +42,51 @@ public class bankGrpcService extends BankServiceGrpc.BankServiceImplBase {
                     timer.cancel();
                 }
             }
-
         }, 1000, 1000);
-
     }
-
+//    =====================================================================
     @Override
     public StreamObserver<Bank.ConvertCurrencyRequest> performStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
-
-        return  new StreamObserver<Bank.ConvertCurrencyRequest>() {
-            double sum = 0;
-
+        return new StreamObserver<Bank.ConvertCurrencyRequest>() {
+            double sum =0;
             @Override
             public void onNext(Bank.ConvertCurrencyRequest convertCurrencyRequest) {
-                sum += convertCurrencyRequest.getAmount();
+                sum+=convertCurrencyRequest.getAmount();
             }
-
             @Override
             public void onError(Throwable throwable) {
                 System.out.println(throwable.getMessage());
             }
-
             @Override
             public void onCompleted() {
-                Bank.ConvertCurrencyResponse currencyResponse = Bank.ConvertCurrencyResponse.newBuilder()
+                Bank.ConvertCurrencyResponse response = Bank.ConvertCurrencyResponse.newBuilder()
                         .setResult(sum)
                         .build();
-                responseObserver.onNext(currencyResponse);
+                responseObserver.onNext(response);
                 responseObserver.onCompleted();
             }
         };
     }
+    @Override
+    public StreamObserver<Bank.ConvertCurrencyRequest> fullCurrencyStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
+        return new StreamObserver<Bank.ConvertCurrencyRequest>() {
+            @Override
+            public void onNext(Bank.ConvertCurrencyRequest convertCurrencyRequest) {
 
-//    @Override
-//    public StreamObserver<Bank.ConvertCurrencyRequest> fullCurrencyStream(StreamObserver<Bank.ConvertCurrencyResponse> responseObserver) {
-//
-//    }
+                    Bank.ConvertCurrencyResponse response = Bank.ConvertCurrencyResponse.newBuilder()
+                            .setResult(convertCurrencyRequest.getAmount())
+                            .build();
+                    responseObserver.onNext(response);
+                System.out.println(convertCurrencyRequest.getAmount());
+            }
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
+            }
+            @Override
+            public void onCompleted() {
+                responseObserver.onCompleted();
+            }
+        };
+    }
 }
